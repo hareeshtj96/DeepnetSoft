@@ -14,7 +14,7 @@ const app = express();
 
 
 const corsOptions = {
-    origin: 'glittering-khapse-95e700.netlify.app',
+    origin: 'https://glittering-khapse-95e700.netlify.app',
     methods: 'GET,POST,PUT,DELETE',
     allowedHeaders: 'Content-Type, Authorization',
 };
