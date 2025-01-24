@@ -5,6 +5,16 @@ const prisma = new PrismaClient();
 const createMenu = async (req, res) => {
     const { name, description } = req.body;
     try {
+        const existingMenu = await prisma.menu.findFirst({
+            where: {
+                name: name,
+            },
+        })
+
+        if (existingMenu) {
+            return res.status(400).json({ error: "Menu with this name already exists" })
+        }
+
         const newMenu = await prisma.menu.create({
             data: {
                 name,
@@ -37,6 +47,7 @@ const getMenus = async (req, res) => {
 // Get menu by id
 const getMenuById = async (req, res) => {
     const { id } = req.params;
+
     try {
         const menu = await prisma.menu.findUnique({
             where: { id },
@@ -57,8 +68,20 @@ const getMenuById = async (req, res) => {
 // Adding item to a menu
 const addMenuItem = async (req, res) => {
     const { menuId } = req.params;
+
     const { name, description, price } = req.body;
+
     try {
+        const existingMenuItem = await prisma.menuItem.findFirst({
+            where: {
+                name: name,
+            },
+        });
+
+        if (existingMenuItem) {
+            return res.status(400).json({ error: "Menu item with this name already exists" })
+        }
+
         const newItem = await prisma.menuItem.create({
             data: {
                 name,

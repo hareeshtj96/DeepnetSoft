@@ -21,14 +21,20 @@ const MenuDetails = ({ menuId }) => {
   }, [menuId]);
 
   return (
-    <div className="p-4">
-      <h2 className="text-2xl font-bold">Menu Items</h2>
-      <ul className="space-y-4 mt-4">
+    <div className="p-4 sm:p-6 lg:p-8">
+      <h2 className="text-2xl sm:text-3xl font-bold text-black mb-6">
+        Menu Items
+      </h2>
+      <ul className="space-y-4">
         {menuItem.map((item) => (
-          <li key={item.id} className="border p-4 rounded">
-            <h3 className="font-semibold">{item.name}</h3>
-            <p>{item.description}</p>
-            <p className="text-green-600 font-semibold">{item.price}</p>
+          <li key={item.id} className="border p-4 rounded-lg shadow-md">
+            <h3 className="font-semibold text-lg sm:text-xl text-black">
+              {item.name}
+            </h3>
+            <p className="text-gray-600 mt-2">{item.description}</p>
+            <p className="text-green-600 font-semibold text-lg mt-2">
+              {item.price}
+            </p>
           </li>
         ))}
       </ul>
