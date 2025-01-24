@@ -12,8 +12,15 @@ const PORT = process.env.PORT || 5000;
 
 const app = express();
 
+
+const corsOptions = {
+    origin: 'glittering-khapse-95e700.netlify.app',
+    methods: 'GET,POST,PUT,DELETE',
+    allowedHeaders: 'Content-Type, Authorization',
+};
+
 //middleware
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 app.use("/api/menu", menuRoutes)
