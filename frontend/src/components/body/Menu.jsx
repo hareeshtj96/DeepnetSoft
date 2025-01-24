@@ -9,10 +9,13 @@ const Menu = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3000/api/menu", {
-        name,
-        description,
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/menu`,
+        {
+          name,
+          description,
+        }
+      );
       toast.success("Menu created successfully!");
       setName("");
       setDescription("");

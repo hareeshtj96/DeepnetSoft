@@ -6,6 +6,7 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
+    "serve": "serve -s dist",
     "preview": "vite preview"
   },
   "dependencies": {

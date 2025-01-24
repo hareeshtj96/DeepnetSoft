@@ -25,7 +25,9 @@ const Hero = () => {
   useEffect(() => {
     const fetchMenus = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/menu");
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/menu`
+        );
         setMenus(response.data);
         setLoadingMenus(false);
       } catch (error) {
@@ -41,7 +43,7 @@ const Hero = () => {
     if (selectedMenu) {
       setLoadingItems(true);
       axios
-        .get(`http://localhost:3000/api/menu/${selectedMenu}/items`)
+        .get(`${import.meta.env.VITE_API_URL}/menu/${selectedMenu}/items`)
         .then((response) => {
           setMenuItems(response.data);
           setLoadingItems(false);
@@ -64,7 +66,7 @@ const Hero = () => {
   const handleAddMenu = async () => {
     try {
       setShowMenu(false);
-      const response = await axios.get("http://localhost:3000/api/menu");
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/menu`);
       setMenus(response.data);
     } catch (error) {
       console.error("Error adding menu:", error);
@@ -90,13 +92,13 @@ const Hero = () => {
     }
     try {
       const response = await axios.post(
-        `http://localhost:3000/api/menu/${selectedMenu}/items`,
+        `${import.meta.env.VITE_API_URL}/menu/${selectedMenu}/items`,
         newItem
       );
       toast.success("Item added to Menu Successfully!");
 
       const updatedItems = await axios.get(
-        `http://localhost:3000/api/menu/${selectedMenu}/items`
+        `${import.meta.env.VITE_API_URL}/menu/${selectedMenu}/items`
       );
       console.log("updated:", updatedItems);
       setMenuItems(updatedItems.data);

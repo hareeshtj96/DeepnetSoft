@@ -8,7 +8,7 @@ const MenuDetails = ({ menuId }) => {
     const fetchMenuDetail = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/menu/${menuId}`
+          `${import.meta.env.VITE_API_URL}/menu/${menuId}`
         );
         setMenuItem(response.data.items);
       } catch (error) {
